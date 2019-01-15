@@ -1,0 +1,770 @@
+<?php
+
+
+function the_FeatureContent( $postObject )
+{
+
+	$imagePath = get_field( 'content_feature', $postObject->ID );
+	$isBreakingNews = get_field( 'content_isBreaking', $postObject->ID );
+
+	if ( $imagePath )
+	{
+		$imagePath = $imagePath[0]['content_feature_hero_image']['sizes']['wide-image'];
+	}
+	else
+	{
+		$imagePathSrc = wp_get_attachment_image_src( get_post_thumbnail_id( $postObject->ID ), 'medium' );
+		$imagePath = $imagePathSrc[0];
+	}
+
+
+	?>
+<tr>
+<td class="full-width-image" style="padding-left: 20px; padding-right: 20px; padding-top: 30px;">
+	<a href="<?php echo get_the_permalink( $postObject->ID ); ?>?utm_source=newsletter&utm_medium=email&utm_campaign=content">
+		<img src="<?php echo $imagePath; ?>" border="0" alt="<?php echo $postObject->post_title; ?>" title="<?php echo $postObject->post_title; ?>" width="610" style="display: block; width: 100%; max-width: 610px; height: auto;" />
+	</a>
+	<?php
+		if ( $isBreakingNews == 'Yes' ) {
+			?>
+			<div style="background-color:#b01116; color:white; text-align:center; padding:6px;">
+				<font style="font-size:20px; font-family:Arial, Helvetica, sans-serif;">
+					BREAKING NEWS
+				</font>
+			</div>
+			<?php
+		}
+		?>
+	<div style="padding:10px 0px 5px 0px;">
+          <font face="Arial, Helvetica, sans-serif" style="font-size: 19px; font-weight: bold;">
+            <a href="<?php echo get_the_permalink( $postObject->ID ); ?>?utm_source=newsletter&utm_medium=email&utm_campaign=content" style="text-decoration: none; color: #000;"><?php echo $postObject->post_title; ?></a>
+          </font>
+        </div>
+        <div style="padding:0px 0px 20px 0px;">
+          <font face="Arial, Helvetica, sans-serif" style="font-size: 14px; color: #000;"><?php echo $postObject->post_excerpt; ?></font>
+        </div>
+</td>
+</tr>
+<tr><td><div style="height: 1px; background-color: #999; width: 100%; max-width: 650px; max-height: 1px;"></div></td></tr>	
+	<?php
+}
+function the_NewsletterContent( $postObject )
+{
+	?>
+<tr>
+<td class="left-sidebar" style="text-align: center; font-size: 0;">
+<!--[if (gte mso 9)|(IE)]>
+<table width="100%">
+<tr>
+<td width="170">
+<![endif]-->
+<div class="column left" style="width: 100%; display: inline-block; vertical-align: middle; max-width: 170px;">
+    <table width="100%">
+        <tr>
+            <td class="inner" style="padding-bottom: 5px;">
+                <a href="<?php echo get_the_permalink( $postObject->ID ); ?>?utm_source=newsletter&utm_medium=email&utm_campaign=content">
+            	<img src="<?php echo get_the_post_thumbnail_url( $postObject->ID, 'medium') ?>" alt="<?php echo $postObject->post_title; ?>" title="<?php echo $postObject->post_title; ?>" width="150" aria-border="0" style="display: block; width: 100%; max-width: 150px; height: auto;">
+			</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--[if (gte mso 9)|(IE)]>
+</td><td width="480">
+<![endif]-->
+<div class="column right" style="width: 100%; display: inline-block; vertical-align: middle; max-width: 440px;">
+    <table width="100%">
+        <tr>
+            <td class="inner contents" style="text-align: left; padding-bottom: 10px;">
+            <div style="padding-bottom: 5px;">
+              <font face="Arial, Helvetica, sans-serif" style="font-size: 19px; font-weight: bold;">
+                <a href="<?php echo get_the_permalink( $postObject->ID ); ?>?utm_source=newsletter&utm_medium=email&utm_campaign=content" style="text-decoration: none; color: #000;"><?php echo $postObject->post_title; ?></a>
+              </font>
+            </div>
+            <div>
+              <font face="Arial, Helvetica, sans-serif" style="font-size: 14px; color: #000;"><?php echo $postObject->post_excerpt; ?>
+              </font>
+            </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+    </td>
+</tr>		
+<tr><td><div style="height: 1px; background-color: #999; width: 100%; max-width: 650px; max-height: 1px;"></div></td></tr>
+
+	<?php
+}
+function the_SponsoredEditorialContent( $postObject )
+{
+	?>
+	<tr>
+<td class="left-sidebar" style="text-align: center; font-size: 0;">
+<!--[if (gte mso 9)|(IE)]>
+<table width="100%">
+<tr>
+<td width="170">
+<![endif]-->
+<div class="column left" style="width: 100%; display: inline-block; vertical-align: middle; max-width: 170px;">
+    <table width="100%">
+        <tr>
+            <td class="inner" style="padding-bottom: 5px;">
+                <a href="<?php echo get_the_permalink( $postObject->ID ); ?>?utm_source=newsletter&utm_medium=email&utm_campaign=content">
+            	<img src="<?php echo get_the_post_thumbnail_url( $postObject->ID, 'medium') ?>" alt="<?php echo $postObject->post_title; ?>" title="<?php echo $postObject->post_title; ?>" width="150" aria-border="0" style="display: block; width: 100%; max-width: 150px; height: auto;">
+			</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--[if (gte mso 9)|(IE)]>
+</td><td width="480">
+<![endif]-->
+<div class="column right" style="width: 100%; display: inline-block; vertical-align: middle; max-width: 440px;">
+    <table width="100%">
+        <tr>
+            <td class="inner contents" style="text-align: left; padding-bottom: 10px;">
+				<div style="padding-bottom: 5px;">
+          <font face="Arial, Helvetica, sans-serif" style="font-size: 13px; color: #005941; font-weight: bold;">SPONSORED CONTENT</font>
+        </div>
+            <div style="padding-bottom: 5px;">
+              <font face="Arial, Helvetica, sans-serif" style="font-size: 19px; font-weight: bold;">
+                <a href="<?php echo get_the_permalink( $postObject->ID ); ?>?utm_source=newsletter&utm_medium=email&utm_campaign=content" style="text-decoration: none; color: #000;"><?php echo $postObject->post_title; ?></a>
+              </font>
+            </div>
+            <div>
+              <font face="Arial, Helvetica, sans-serif" style="font-size: 14px; color: #000;"><?php echo $postObject->post_excerpt; ?>
+              </font>
+            </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+    </td>
+</tr>		
+<tr><td><div style="height: 1px; background-color: #999; width: 100%; max-width: 650px; max-height: 1px;"></div></td></tr>
+	<?php
+}
+function the_SponsorContent( $postObject )
+{
+	?>
+	<tr>
+<td class="left-sidebar" style="text-align: center; font-size: 0;">
+<!--[if (gte mso 9)|(IE)]>
+<table width="100%">
+<tr>
+<td width="170">
+<![endif]-->
+<div class="column left" style="width: 100%; display: inline-block; vertical-align: middle; max-width: 170px;">
+    <table width="100%">
+        <tr>
+            <td class="inner" style="padding-bottom: 5px;">
+                <a href="<?php echo get_the_permalink( $postObject->ID ); ?>?utm_source=newsletter&utm_medium=email&utm_campaign=content">
+            	<img src="<?php echo get_the_post_thumbnail_url( $postObject->ID, 'medium') ?>" alt="<?php echo $postObject->post_title; ?>" title="<?php echo $postObject->post_title; ?>" width="150" aria-border="0" style="display: block; width: 100%; max-width: 150px; height: auto;">
+			</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--[if (gte mso 9)|(IE)]>
+</td><td width="480">
+<![endif]-->
+<div class="column right" style="width: 100%; display: inline-block; vertical-align: middle; max-width: 440px;">
+    <table width="100%">
+        <tr>
+            <td class="inner contents" style="text-align: left; padding-bottom: 10px;">
+				<div style="padding-bottom: 5px;">
+          <font face="Arial, Helvetica, sans-serif" style="font-size: 13px; color: #005941; font-weight: bold;">CONTENT FROM OUR SPONSOR</font>
+        </div>
+            <div style="padding-bottom: 5px;">
+              <font face="Arial, Helvetica, sans-serif" style="font-size: 19px; font-weight: bold;">
+                <a href="<?php echo get_the_permalink( $postObject->ID ); ?>?utm_source=newsletter&utm_medium=email&utm_campaign=content" style="text-decoration: none; color: #000;"><?php echo $postObject->post_title; ?></a>
+              </font>
+            </div>
+            <div>
+              <font face="Arial, Helvetica, sans-serif" style="font-size: 14px; color: #000;"><?php echo $postObject->post_excerpt; ?>
+              </font>
+            </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+    </td>
+</tr>		
+<tr><td><div style="height: 1px; background-color: #999; width: 100%; max-width: 650px; max-height: 1px;"></div></td></tr>
+	<?php
+}
+function the_GenericContent()
+{
+	?>
+	<div style="padding-bottom:45px;">
+		<div>
+			<font face="Tahoma, sans-serif" style="font-family:Tahoma, sans-serif;"><a href="#" style="text-decoration:none; color:#000000;"><img src="" border="0" alt="Article Image" /></a></font>
+		</div>
+		<div style="font-size:19px; text-align:left; padding:10px !important;">
+			<font face="Tahoma, sans-serif"><a href="#" style="text-decoration:none; color:#000000;">[ARTICLE TITLE]</a></font>
+		</div>
+		<div style="font-size:16px; text-align:left; padding:10px !important;">
+			<font face="Tahoma, sans-serif">[ARTICLE DECK]</font>
+		</div>
+		<br />
+		<div style="font-size:14px; text-align:left; color:#5e8a58; padding:10px !important;">
+			<em><font face="Tahoma, sans-serif">Content from our Colleagues</font></em>
+		</div>
+	</div>
+	<?php
+}
+function the_RectangleAd( $thisRectAd )
+{
+	?>
+	<a href="<?php echo $thisRectAd['newsletter_advertising_rect_linkUrl']; ?>"><img src="<?php echo $thisRectAd['newsletter_advertising_rect_imageUrl']; ?>" border="0" alt="Advertisement" /></a>
+	<?php
+}
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--[if !mso]><!-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!--<![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+<!--[if (gte mso 9)|(IE)]>
+<style type="text/css">
+table {border-collapse: collapse;}
+</style>
+<![endif]-->
+	
+<style>
+/* Basics */
+body {
+	margin: 0 !important;
+	padding: 0;
+	background-color: #ffffff;
+}
+table {
+	border-spacing: 0;
+	font-family: sans-serif;
+	color: #333333;
+}
+td {
+	padding: 0;
+}
+img {
+	border: 0;
+}
+div[style*="margin: 16px 0"] { 
+	margin:0 !important;
+}
+.wrapper {
+	width: 100%;
+	table-layout: fixed;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+.webkit {
+	max-width: 650px;
+	margin: 0 auto;
+}
+.outer {
+Margin: 0 auto;
+width: 100%;
+max-width: 650px;
+}
+
+.full-width-image img {
+width: 100%;
+max-width: 610px;
+height: auto;
+
+}
+	
+/* Left sidebar layout */
+.left-sidebar {
+text-align: center;
+    font-size: 0;
+	padding: 20px 20px 20px 20px;
+}
+	
+.left-sidebar .column {
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.left-sidebar .left {
+    max-width: 170px;
+}
+.left-sidebar .right {
+    max-width: 440px;
+}
+.left-sidebar .img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+	padding-bottom: 10px;
+}	
+.left-sidebar .leftlogo {
+    max-width: 300px;
+}
+.left-sidebar .rightlogo {
+    max-width: 310px;
+}
+.left-sidebar .leftlogo .img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+	padding-bottom: 10px;
+}		
+.left-sidebar .contents {
+font-size: 14px;
+    text-align: left;
+}
+.left-sidebar a {
+    color: #85ab70;
+}
+	
+ 
+/*Two column layout*/
+.two-column {
+	text-align: center;
+    font-size: 0;
+}	
+.two-column .column {
+	width: 100%;
+    max-width: 320px;
+    display: inline-block;
+    vertical-align: top;
+}
+.contents {
+width: 100%;
+}	
+.two-column .contents {
+font-size: 14px;
+    text-align: left;
+}
+.two-column img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+.preheader { 
+	display:none !important; 
+	visibility:hidden; 
+	opacity:0; 
+	color:transparent; 
+	height:0; 
+	width:0; 
+}	
+</style>
+	
+</head>
+	
+	
+<body>
+    <center class="wrapper" style="width: 100%; table-layout: fixed; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
+        <div class="webkit" style="max-width: 650px; margin: 0 auto;">
+			<span class="preheader" style="color:transparent; display:none !important; height:0; opacity:0; 
+visibility:hidden; width:0">Security Sales &amp; Integration Newsletter</span>
+			
+<!--[if (gte mso 9)|(IE)]>
+<table width="650" align="center" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td>
+<![endif]-->
+<table class="outer" align="center" style="margin: 0 auto; width: 100%; max-width: 650px;">
+	<tr>
+		<td>			
+			
+<!-- logo -->				
+<tr>
+	<td>
+		<div style="text-align: center; padding-bottom: 5px; max-width: 650px;"><font face="Arial, Helvetica, sans-serif" style="font-size: 12px;">Trouble viewing this email? <a href="%%publicview%%">View it here.</a></font></div>
+	</td>
+</tr>
+					
+<tr>
+	<td style="padding: 0px 0px 0px 20px;">
+		<a href="https://www.securitysales.com/?utm_source=newsletter&utm_medium=email&utm_campaign=content" style="text-decoration: none;">
+		  <img src="https://s3.amazonaws.com/securitysales/images/common/SSI_green%26gray_logo.png" alt="SSI Logo" border="0" align="left" width="225" height="71" style="display: block; max-width: 225px; width: 100%; height: auto; padding-bottom: 15px;"/>
+		</a>
+    </td>
+</tr>		
+			
+<tr><td><div style="height: 1px; background-color: #999; width: 100%; max-width: 650px; max-height: 1px;"></div></td></tr>			
+<!-- closes logo -->
+			
+<!-- date section -->
+
+		<tr>
+			<td style="padding: 5px 20px 5px 20px; background-color: #005941;">
+				<div>
+					<font face="Arial, Helvetica, sans-serif" style="font-size: 15px; color: #fff;"><?php echo date('F j, Y'); ?></font>
+				</div>
+			</td>
+		</tr>
+<!-- close date section -->			
+
+						<?php 
+
+						$customHtml = get_field('newsletter_customHtml');
+
+						if ( $customHtml ) {
+							?>
+							<tr>
+								<td style="padding: 5px 20px 5px 20px; max-width: 650px;">
+									<font face="Arial, Helvetica, sans-serif" style="font-size: 14px; color: #000;"><?php echo $customHtml; ?></font>
+								</td>
+							</tr>
+							<?php
+						}
+				
+						$customHero = get_field('newsletter_heroGraphic');
+
+						if ( $customHero ) {
+							?>
+							<tr>
+								<td class="full-width-image" style="padding-left: 20px; padding-right: 20px; padding-top: 30px;">
+								<img src="<?php echo $customHero['url']; ?>" alt="<?php echo $customHero['alt']; ?>" width="610" style="display: block; width: 100%; max-width: 610px; height: auto;" />
+								</td>
+							</tr>
+							<?php
+						}
+			
+						$editorsNote = get_field('newsletter_editorsNote');
+
+						if ( $editorsNote ) {
+							?>
+							<tr>
+								<td style="padding: 5px 20px 5px 20px; max-width: 650px;">
+									<font face="Arial, Helvetica, sans-serif" style="font-size: 14px; color: #000;"><?php echo $editorsNote; ?></font>
+								</td>
+							</tr>
+							<?php
+						}
+
+
+						$contentCounter = 0;
+						$content = get_field('newsletter_content');
+						$numOfContent = count( $content );
+						$allRectAds = get_field('newsletter_advertising');
+						$numOfRectAds = count( $allRectAds );
+
+						// ensure that there is an odd number of content items (feature, + even num of tiles)
+						if ( $numOfContent === 3 )
+						{
+							$numOfContent --;
+						}
+
+						// ensure that the ads are displayed, and they are shown on an odd number, as they should span both columns
+						if ( $numOfRectAds === 2 )
+						{
+							$adCounterIndex = 3;
+						}
+						else
+						{
+							$adCounterIndex = -1;
+						}
+
+						if ( $content )
+						{
+							for ( $contentCounter = 0; $contentCounter < $numOfContent; $contentCounter ++ )
+							{
+								// check to see if this is the halfway point, where ads should be displayed
+								if ( $allRectAds )
+								{
+									if ( $contentCounter == $adCounterIndex )
+									{
+										?>
+
+			
+<tr>
+<td class="two-column" style="text-align: center; font-size: 0;">
+        <!--[if (gte mso 9)|(IE)]>
+        <table width="100%">
+        <tr>
+        <td width="50%" valign="top">
+        <![endif]-->
+        <div class="column" style="width: 100%; max-width: 320px; display: inline-block; vertical-align: top;">
+<table width="100%">
+        <tr>
+            <td class="inner" style="padding: 5px 0;">
+                <table class="contents" style="width: 100%; font-size: 14px; text-align: left;">
+    <tr>
+            <td>
+            <div style="max-width: 300px;">
+               <?php the_RectangleAd( $allRectAds[0] ); ?>
+               <div style="text-align: center;"><font face="Arial, Helvetica, sans-serif" style="font-size: 10px; color:#999999;">Advertisement</font></div>
+            </div>
+            </td>
+    </tr>
+
+</table>
+            </td>
+        </tr>
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td><td width="50%" valign="top">
+        <![endif]-->
+        <div class="column" style="width: 100%; max-width: 320px; display: inline-block; vertical-align: top;">
+<table width="100%">
+        <tr>
+            <td class="inner" style="padding: 5px 0;">
+                <table class="contents" style="width: 100%; font-size: 14px; text-align: left;">
+    <tr>
+            <td>
+                   <div style="max-width: 300px;">
+               <?php the_RectangleAd( $allRectAds[1] ); ?>
+               <div style="text-align: center;"><font face="Arial, Helvetica, sans-serif" style="font-size: 10px; color:#999999;">Advertisement</font></div>
+            </div>
+            </td>
+    </tr>
+
+</table>
+            </td>
+        </tr>
+    </table>
+</div>
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+    </td>
+</tr>		
+<tr><td><div style="height: 1px; background-color: #999; width: 100%; max-width: 650px; max-height: 1px;"></div></td></tr>			
+		
+			
+										<?php
+									}
+								}
+
+								// check to see if is the featured content item / lead story
+								if ( $contentCounter == 0 )
+								{
+									
+											the_FeatureContent( $content[$contentCounter]['newsletter_editorial_item'] );
+											
+								}
+								else
+								{
+									
+								
+
+									if ( $content[$contentCounter]['acf_fc_layout'] == 'newsletter_editorial' )
+									{
+										the_NewsletterContent( $content[$contentCounter]['newsletter_editorial_item'] );
+									}
+									else if ( $content[$contentCounter]['acf_fc_layout'] == 'newsletter_sponsored' )
+									{
+										if ( has_term('sponsored-content', 'category', $content[$contentCounter]['newsletter_sponsored_item'] ) )
+										{
+											the_SponsoredEditorialContent( $content[$contentCounter]['newsletter_sponsored_item'] );
+										}
+										else
+										{
+											the_SponsorContent( $content[$contentCounter]['newsletter_sponsored_item'] );
+										}
+										
+									}
+
+
+									
+								}
+
+							}
+						}
+			
+			?>
+<!-- SPACER section -->
+			<tr>
+				<td style="padding: 15px 20px 5px 20px; background-color: #005941; max-width: 650px;">
+
+				</td>
+			</tr>
+<!-- close SPACER section -->				
+					
+			
+<!-- resource section -->	
+			<?php
+			$downloadArgs = array (
+					'post_type'					=>	'download',
+					'post_status'				=>	'publish',
+					'posts_per_page'			=>	1,
+					'orderby'					=>	'date',
+					'order'						=>	'DESC',
+					'no_found_rows'				=>	true,
+					'update_post_meta_cache'	=>	false,
+					'update_post_term_cache'	=>	false,
+					'category__not_in' 			=> 11 ,
+				);
+
+				$downloadQuery = new WP_Query( $downloadArgs );
+
+				if ( $downloadQuery->have_posts() )
+				{
+					while ( $downloadQuery->have_posts() )
+								{
+							$downloadQuery->the_post();
+							$title = get_the_title();
+						?>		
+			<tr>
+<td style="padding: 20px 20px 20px 20px;">
+<div style="padding-bottom: 5px;">
+          <font face="Arial, Helvetica, sans-serif" style="font-size: 13px; color: #005941; font-weight: bold;">RESOURCE</font>
+        </div>
+
+            <div>
+              <font face="Arial, Helvetica, sans-serif" style="font-size: 19px; font-weight: bold;">
+                <a href="<?php the_permalink(); ?>?utm_source=newsletter&utm_medium=email&utm_campaign=content" style="text-decoration: none; color: #000;"><?php echo $title ?></a>
+              </font>
+            </div>
+            <div>
+              <font face="Arial, Helvetica, sans-serif" style="font-size: 14px; color: #000;"><?php the_excerpt(); ?>
+              </font>
+            </div>
+</tr>		
+<tr><td><div style="height: 1px; background-color: #999; width: 100%; max-width: 650px; max-height: 1px;"></div></td></tr>	
+			<?php
+wp_reset_postdata();
+
+
+
+		 }	}  
+			
+			
+			
+			$webcastArgs = array (
+			'post_type'					=>	'webcast',
+			'post_status'				=>	'publish',
+			'posts_per_page'			=>	1,
+			'order'						=>	'ASC',
+			'no_found_rows'				=>	true,
+			'update_post_meta_cache'	=>	false,
+			'update_post_term_cache'	=>	false,
+			'orderby'   				=> 'meta_value',
+			//GETTING THE WEBCAST CLOSEST TO TODAY'S DATE 
+			'meta_query' => array(
+			  array(
+			'key' => 'webcast_date',
+			'value' => date('Y-m-d'),
+			'compare' => '>=',
+			'type' => 'DATE'
+			 )
+			)
+		);
+
+		$webcastQuery = new WP_Query( $webcastArgs );
+
+		if ( $webcastQuery->have_posts() )
+		{
+			
+						while ( $webcastQuery->have_posts() )
+							{
+								$webcastQuery->the_post();
+								$title = get_the_title();
+						?>
+			
+			<tr>
+<td style="padding: 20px 20px 20px 20px;">
+<div style="padding-bottom: 5px;">
+          <font face="Arial, Helvetica, sans-serif" style="font-size: 13px; color: #005941; font-weight: bold;">WEBCAST</font>
+        </div>
+
+            <div style="padding-bottom: 5px;">
+              <font face="Arial, Helvetica, sans-serif" style="font-size: 19px; font-weight: bold;">
+                <a href="<?php the_permalink(); ?>?utm_source=newsletter&utm_medium=email&utm_campaign=content" style="text-decoration: none; color: #000;"><?php the_title(); ?></a>
+              </font>
+            </div>
+            <div>
+              <font face="Arial, Helvetica, sans-serif" style="font-size: 14px; color: #000;"><?php echo the_excerpt(); ?>
+              </font>
+            </div>
+</tr>		
+<tr><td><div style="height: 1px; background-color: #999; width: 100%; max-width: 650px; max-height: 1px;"></div></td></tr>	
+			<?php
+wp_reset_postdata();
+}
+		}?>
+					
+<!-- close webcast section -->	
+<!-- Bottom Promo section -->	
+	<?php
+	$editPromo = get_field('bottom_editorial_promo');
+
+						if ( $editPromo ) {
+							?>
+							<tr>
+								<td style="padding: 20px 20px 20px 20px; max-width: 650px;">
+									<?php echo $editPromo; ?>
+								</td>
+							</tr>
+							<?php
+						}
+				?>
+<!-- close Bottom  Promo section -->		
+			
+<tr><td><div style="height: 1px; background-color: #999; width: 100%; max-width: 650px; max-height: 1px;"></div></td></tr>	
+			
+<!-- social section -->
+		<tr>
+			<td style="padding: 20px 0; text-align: center;">
+				<table width="110" align="center">
+			 <tr>
+				<font face="Arial, Helvetica, sans-serif" style="font-size: 12px; color: #000; font-style: italic; padding-bottom: 10px; display: inline-block;">Share the SSI Newsletter</font>
+					</tr>
+					<tr>
+				<td width="160" height="30">
+			  <a href="https://www.facebook.com/SSIMagazine/?utm_source=newsletter&utm_medium=email&utm_campaign=content" alt="Security Sales &amp; Integration Facebook" style="text-decoration: none;">
+		   <img src="http://commercialintegrator.s3.amazonaws.com/images/nlt/facebook_icon.jpg" width="30" border="0" style="display:block; max-width: 30px;">
+			  </a>
+				 </td>
+				 <td width="160" height="30">
+			<a href="https://twitter.com/SSIMagazine/?utm_source=newsletter&utm_medium=email&utm_campaign=content" alt="Security Sales &amp; Integration Twitter" style="text-decoration: none;">
+			 <img src="http://commercialintegrator.s3.amazonaws.com/images/nlt/twitter_icon.jpg" width="30" border="0" style="display:block; max-width: 30px;">
+				</a>
+				 </td>
+				 <td width="30" height="30">
+			<a href="https://www.linkedin.com/groups/2301937/?utm_source=newsletter&utm_medium=email&utm_campaign=content" alt="Security Sales &amp; Integration LinkedIn" style="text-decoration: none;">
+			 <img src="http://commercialintegrator.s3.amazonaws.com/images/nlt/linkedin_icon.jpg" width="30" border="0" style="display:block; max-width: 30px;">
+			</a>
+				 </td>
+			 </tr>
+		</table>
+			</td>
+		</tr>
+<!-- close social section -->		
+<tr><td><div style="height: 1px; background-color: #999; width: 100%; max-width: 650px; max-height: 1px;"></div></td></tr>				
+			
+</td>	<!-- closes main td -->
+</tr>	<!-- closes main tr -->
+</table>	<!-- closes main table -->		
+			
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+        </div>
+    </center>
+</body>
+	
+</html>
+
